@@ -1,6 +1,10 @@
-from flask import render_template, request
+from flask import render_template, request, flash, redirect, url_for
 import requests
-from app.forms import PokemonForm, LoginForm, SignUpForm
+from app.forms import PokemonForm, LoginForm, RegisterForm
+from app.models import User
+from werkzeug.security import check_password_hash
+from flask_login import login_user, logout_user, current_user
+
 from app import app
 
 # ROUTES SECTION
@@ -8,30 +12,57 @@ from app import app
 def home():
     return render_template('home.html')
 
-@app.route('/signup', methods=['GET', 'POST'])
-def signup():
-    form = SignUpForm()
-    if request.method == 'POST' and form.validate_on_submit():
-        email = form.email.data.lower()
-        password = form.password.data
-        if email in app.config.get('REGISTERED_USERS') and password == app.config.get('REGISTERED_USERS').get(email).get('password'):
-            return f'Sign up Successful! Hello, {app.config.get("REGISTERED_USERS").get(email).get("name")}'
-        else:
-            return render_template('signup.html', form=form)
-    return render_template('signup.html', form=form)
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
     if request.method == 'POST' and form.validate_on_submit():
         email = form.email.data.lower()
         password = form.password.data
-        if email in app.config.get('REGISTERED_USERS') and password == app.config.get('REGISTERED_USERS').get(email).get('password'):
-            return f"Login Successful! Welcome {app.config.get('REGISTERED_USERS').get(email).get('name')}"
+
+        # Query from database
+        queried_user = User.query.filter_by(email=email).first()
+        if queried_user and check_password_hash(queried_user.password, password):
+            login_user(queried_user)
+            flash(f'Successfully logged in! Welcome back, {queried_user.first_name}!', 'Success')
+            return redirect(url_for('home'))
         else:
-            error = 'Incorrect Email/Password'
-            return render_template('login.html', error=error, form=form)
+            error = 'Invalid email or password'
+            flash(f'{error}', 'danger')
+            return render_template('login.html', form=form)
     return render_template('login.html', form=form)
+        
+@app.route('/logout', methods=['GET'])
+def logout():
+    if current_user:
+        logout_user()
+        flash('You have successfully logged out!', 'Success')
+        return redirect(url_for('home'))                   
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    form = RegisterForm()
+    if request.method == 'POST' and form.validate_on_submit():
+
+        new_user_data = {
+            'first_name': form.first_name.data.title(),
+            'last_name': form.last_name.data.title(),
+            'email':  form.email.data.lower(),
+            'password':  form.password.data,
+        }
+        # Create instance of User
+        new_user = User()
+
+        # Implementing values from our form data for our instance
+        new_user.from_dict(new_user_data)
+
+        # Save our instance to the database
+        new_user.save_to_db()
+        flash('You have successfully registered!', 'success')
+        return redirect(url_for('login'))
+    return render_template('register.html', form=form)
+
+    
+
 
 @app.route("/pokemon", methods=['GET','POST'])
 def pokemon():

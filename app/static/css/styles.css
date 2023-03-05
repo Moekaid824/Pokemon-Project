@@ -1,0 +1,27 @@
+body {
+    background-color:  yellow;
+    background-repeat: no-repeat;
+    /* text-align: center; */
+}
+  
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+.center {
+    text-align: center;
+}
+
+.nav-link {
+    color: white;
+}
+
+.navbar-brand {
+    color: white;
+}
+
+.form-control {
+    border: 2px solid black;
+}

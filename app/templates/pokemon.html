@@ -7,6 +7,7 @@ Pokemon
 {% block content %}
   <h1>Pokemon Page</h1>
   <form action="/pokemon" method="POST">
+  <img src="https://imgs.search.brave.com/L3sh7_UFEE4soXtiTeZ_6vbfGR_ajcswlTUM-r9EUPY/rs:fit:1200:1000:1/g:ce/aHR0cHM6Ly9zdGF0/aWMyLmNicmltYWdl/cy5jb20vd29yZHBy/ZXNzL3dwLWNvbnRl/bnQvdXBsb2Fkcy8y/MDIxLzAyL0FzaC1L/ZXRjaHVtLVBpa2Fj/aHUtSm91cm5leXMt/U2Vjb25kLU1vdmll/LUx1Z2lhLVBvd2Vy/LW9mLU9uZS5qcGc">
       {{form.hidden_tag()}}
       <div class="form-group">
         {{form.name.label()}}
