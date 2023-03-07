@@ -6,8 +6,28 @@ Pokemon
 
 {% block content %}
   <h1>Pokemon Page</h1>
-  <form action="/pokemon" method="POST">
-  <img src="https://imgs.search.brave.com/L3sh7_UFEE4soXtiTeZ_6vbfGR_ajcswlTUM-r9EUPY/rs:fit:1200:1000:1/g:ce/aHR0cHM6Ly9zdGF0/aWMyLmNicmltYWdl/cy5jb20vd29yZHBy/ZXNzL3dwLWNvbnRl/bnQvdXBsb2Fkcy8y/MDIxLzAyL0FzaC1L/ZXRjaHVtLVBpa2Fj/aHUtSm91cm5leXMt/U2Vjb25kLU1vdmll/LUx1Z2lhLVBvd2Vy/LW9mLU9uZS5qcGc">
+  <form action="{{url_for('main.pokemon')}}" method="POST">
+    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="https://imgs.search.brave.com/L3sh7_UFEE4soXtiTeZ_6vbfGR_ajcswlTUM-r9EUPY/rs:fit:1200:1000:1/g:ce/aHR0cHM6Ly9zdGF0/aWMyLmNicmltYWdl/cy5jb20vd29yZHBy/ZXNzL3dwLWNvbnRl/bnQvdXBsb2Fkcy8y/MDIxLzAyL0FzaC1L/ZXRjaHVtLVBpa2Fj/aHUtSm91cm5leXMt/U2Vjb25kLU1vdmll/LUx1Z2lhLVBvd2Vy/LW9mLU9uZS5qcGc" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="https://imgs.search.brave.com/XXeEYfrFUh6cA4Wv7VPr5wqOmT7_nTxn8Mvc93noSQc/rs:fit:1200:1080:1/g:ce/aHR0cDovL2kyLmt5/bS1jZG4uY29tL3Bo/b3Rvcy9pbWFnZXMv/ZmFjZWJvb2svMDAx/LzE3MS8yOTkvOWRl/LmpwZw" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="https://i.ytimg.com/vi/qtGVmzCwQAw/maxresdefault.jpg" class="d-block w-100" alt="...">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
       {{form.hidden_tag()}}
       <div class="form-group">
         {{form.name.label()}}
@@ -46,4 +66,15 @@ Pokemon
         </tbody>
       </table>
   {% endif %}
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
 {% endblock %}

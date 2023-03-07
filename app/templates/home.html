@@ -6,5 +6,25 @@
 
 {% block content %}
     <h1 class="center">Pokemon home page!</h1>
-    <img src="https://imgs.search.brave.com/K6ADyEjm2YzOB2WBIlCwMpikCXwU3AVugCQCRYbPpJc/rs:fit:1080:1200:1/g:ce/aHR0cHM6Ly9pbWFn/ZS53aW51ZGYuY29t/L3YyL2ltYWdlL1ky/OXRMbXRvWkM1d2Iy/dGxiVzl1ZDJGc2JI/QmhjR1Z5YzE5elkz/SmxaVzVmTkY4eE5U/SXlNVEk1TmpnNVh6/QTVNdy9zY3JlZW4t/NC5qcGc_ZmFrZXVy/bD0xJnR5cGU9Lmpw/Zw" class="center">
+    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="https://wallpapercave.com/dwp1x/wp7326687.jpg" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="https://imgs.search.brave.com/A49skPsm9n8vq8ULdHEQ6jzfGRaGGucC82FVNPnZGDM/rs:fit:640:960:1/g:ce/aHR0cDovL2Nkbi53/YWxscGFwZXJzYWZh/cmkuY29tLzc1Lzg1/L250MUdUVy5qcGc" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="https://wallpapercave.com/dwp1x/wp3856773.jpg" class="d-block w-100" alt="...">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
 {% endblock %}
