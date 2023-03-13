@@ -2,15 +2,50 @@
 
 {% block content %}
   <h1>Pokemon Battle</h1>
+  <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="https://imgs.search.brave.com/WRfXQ5xxnsAHSt3oiKuni2dSpsFAfKSbgLSp_mPzmJA/rs:fit:1200:720:1/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2VhLzMw/LzNkL2VhMzAzZDIz/MzU2ZjI1MTg2M2Rh/MDQ3Nzc4YTMyY2Ew/LmpwZw" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="https://imgs.search.brave.com/HAzNhfDQar2LViTRF4uF01skIgpOHYLqui7lrKLaRD8/rs:fit:512:420:1/g:ce/aHR0cDovL3BtMS5u/YXJ2aWkuY29tLzU3/OTMvNGNhYjE2OWVl/N2I5NjRkNjU1YmY2/Y2ZiNDQwNTdlYmEz/Zjk5MWZhZF8wMC5q/cGc" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="https://imgs.search.brave.com/XPIM3nQnOukRrx6hCxabgP1IYLzPcIbvvg24JCYEI3E/rs:fit:1024:819:1/g:ce/aHR0cHM6Ly9saXZl/LnN0YXRpY2ZsaWNr/ci5jb20vMzIwNi8y/OTA4OTY4MjUxX2Rm/MGQzOGFjNDhfYi5q/cGc" class="d-block w-100" alt="...">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
   <form method="POST" action="{{ url_for('main.battle') }}">
     {{ form.hidden_tag() }}
     <div class="form-group">
-      <label for="attacker_id">Attacker ID:</label>
+      <label for="attacker_id">Attacker:</label>
       {{ form.attacker_id(class="form-control") }}
+      {% if attacker %}
+        <h2>{{ attacker.name }}</h2>
+        <p>HP: {{ attacker.hp }}</p>
+        <p>Base Defense: {{ attacker.base_defense }}</p>
+        <p>Base Attack: {{ attacker.base_attack }}</p>
+        <img src="{{ attacker.front_shiny_image_url }}" alt="{{ attacker.name }} front shiny image">
+      {% endif %}
     </div>
     <div class="form-group">
-      <label for="defender_id">Defender ID:</label>
+      <label for="defender_id">Defender:</label>
       {{ form.defender_id(class="form-control") }}
+      {% if defender %}
+        <h2>{{ defender.name }}</h2>
+        <p>HP: {{ defender.hp }}</p>
+        <p>Base Defense: {{ defender.base_defense }}</p>
+        <p>Base Attack: {{ defender.base_attack }}</p>
+        <img src="{{ defender.front_shiny_image_url }}" alt="{{ defender.name }} front shiny image">
+      {% endif %}
     </div>
     {{form.submit_btn(class="btn btn-primary") }}
   </form>

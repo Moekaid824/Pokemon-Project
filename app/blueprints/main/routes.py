@@ -124,6 +124,8 @@ def team():
 @login_required
 def battle():
     form = BattleForm()
+    attacker = None
+    defender = None
     if request.method == 'POST' and form.validate_on_submit():
         attacker_id = form.attacker_id.data
         defender_id = form.defender_id.data
@@ -131,5 +133,5 @@ def battle():
        
         flash('Attack successful!', 'success')
         return redirect(url_for('main.battle'))
-    return render_template('battle.html', form=form)
+    return render_template('battle.html', form=form, attacker=attacker, defender=defender)
 
