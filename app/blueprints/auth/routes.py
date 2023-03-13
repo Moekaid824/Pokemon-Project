@@ -90,3 +90,4 @@ def edit_profile():
            return redirect(url_for('main.home'))
 
     return render_template('edit_profile.html', form=form)
+

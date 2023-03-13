@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Pokemon Battle</h1>
+  <form method="POST" action="{{ url_for('main.battle') }}">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+      <label for="attacker_id">Attacker ID:</label>
+      {{ form.attacker_id(class="form-control") }}
+    </div>
+    <div class="form-group">
+      <label for="defender_id">Defender ID:</label>
+      {{ form.defender_id(class="form-control") }}
+    </div>
+    {{form.submit_btn(class="btn btn-primary") }}
+  </form>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+{% endblock %}
