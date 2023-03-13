@@ -26,25 +26,25 @@ class User(UserMixin, db.Model):
     def check_hash_password(self, login_password):
         return check_password_hash(self.password, login_password)
     
-    # Use this method to register our user attributes
+   
     def from_dict(self, data):
         self.first_name = data['first_name']
         self.last_name = data['last_name']
         self.email = data['email']
         self.password = self.hash_password(data['password'])
     
-    # Update user attributes
+    
     def update_user(self, data):
         self.first_name = data['first_name']
         self.last_name = data['last_name']
         self.email = data['email']
     
-    # Save the user to database
+    
     def save_to_db(self):
         db.session.add(self)
         db.session.commit()
 
-    # Update the user to database
+    
     def update_to_db(self):
         db.session.commit()
 

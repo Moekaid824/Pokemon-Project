@@ -6,35 +6,43 @@ Pokemon Teams
 
 {% block content %}
   <h1>Pokemon Teams</h1>
-  {% if team %}
-    <table class="table table-sm">
-        <thead>
-          <tr>
-            <th>Pokemon Name</th>
-            <th>Pokemon Ability</th>
-            <th>Pokemon Base Experience</th>
-            <th>Pokemon Front Shiny</th>
-            <th>Pokemon Attack Base Stat</th>
-            <th>Pokemon HP Base Stat</th>
-            <th>Pokemon Defense Base Stat</th>
-          </tr>
-        </thead>
-        <tbody>
-            {% for pokemon in team %}
-          <tr>
-            <td>{{pokemon.pokemon_name}}</td>
-            <td>{{pokemon.ability_name}}</td>
-            <td>{{pokemon.base_experience}}</td>
-            <td><img src="{{pokemon.front_shiny_url}}"></td>
-            <td>{{pokemon.attack_stat}}</td>
-            <td>{{pokemon.hp_stat}}</td>
-            <td>{{pokemon.defense_stat}}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+ {% if team %}
+  <table class="table table-sm">
+      <thead>
+        <tr>
+          <th>Pokemon Name</th>
+          <th>Pokemon Ability</th>
+          <th>Pokemon Base Experience</th>
+          <th>Pokemon Front Shiny</th>
+          <th>Pokemon Attack Base Stat</th>
+          <th>Pokemon HP Base Stat</th>
+          <th>Pokemon Defense Base Stat</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+          {% for pokemon in team %}
+        <tr>
+          <td>{{pokemon.pokemon_name}}</td>
+          <td>{{pokemon.ability_name}}</td>
+          <td>{{pokemon.base_experience}}</td>
+          <td><img src="{{pokemon.front_shiny_url}}"></td>
+          <td>{{pokemon.attack_stat}}</td>
+          <td>{{pokemon.hp_stat}}</td>
+          <td>{{pokemon.defense_stat}}</td>
+          <td>
+            <form method="POST">
+              {{ form.hidden_tag() }}
+              <input type="hidden" name="remove_pokemon" value="{{ pokemon.id }}">
+              <button type="submit" class="btn btn-danger">Remove</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+{% endif %}
 
-  {% endif %}
   <br>
   <br>
   <br>

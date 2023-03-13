@@ -9,6 +9,9 @@ from ...models import User, Catch, Battle
 @main.route('/', methods=['GET'])
 @login_required
 def home():
+    users = User.query.all()
+    
+
     return render_template('home.html')
 
 @main.route("/pokemon", methods=['GET','POST'])
@@ -75,14 +78,15 @@ def caught_pokemon(pokename):
 @main.route("/team", methods=['GET','POST'])
 @login_required
 def team():
+    users = User.query.all()
     team = current_user.caught_pokemon
     form = TeamForm()
 
-    
     if form.validate_on_submit():
-        
         if len(team) >= 5:
             flash('You already have the maximum number of Pokemon!', 'danger')
+            return redirect(url_for('main.team'))
+       
         else:
             name = form.name.data.lower()
             url = f'https://pokeapi.co/api/v2/pokemon/{name}'
@@ -106,18 +110,21 @@ def team():
                 return redirect(url_for('main.team'))
             else:
                 flash('This is an invalid option', 'danger')
-
-
+                return redirect(url_for('main.team'))
+              
     if request.method == 'POST' and 'remove_pokemon' in request.form:
         pokemon_id = int(request.form['remove_pokemon'])
         pokemon = Catch.query.filter_by(id=pokemon_id).first()
         if pokemon in team:
             current_user.release_pokemon(pokemon)
             flash(f'You have released {pokemon.pokemon_name} from your team!', 'success')
+            return redirect(url_for('main.team'))
+           
         else:
             flash(f'{pokemon.pokemon_name} is not in your team!', 'danger')
-        return redirect(url_for('main.team'))
-
+            return redirect(url_for('main.team'))
+            
+        
     return render_template('pokemon_teams.html', team=team, form=form)
 
 @main.route('/battle', methods=['GET', 'POST'])
