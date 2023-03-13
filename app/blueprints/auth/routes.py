@@ -13,7 +13,7 @@ def login():
         email = form.email.data.lower()
         password = form.password.data
         
-        
+        # Query user from db
         queried_user = User.query.filter_by(email=email).first()
         if queried_user and check_password_hash(queried_user.password, password):
             login_user(queried_user)
@@ -42,7 +42,7 @@ def register():
     form = RegisterForm()
     if request.method == 'POST' and form.validate_on_submit():
 
-        
+        # Grabbing our form data and storing into a dict
         new_user_data = {
             'first_name': form.first_name.data.title(),
             'last_name': form.last_name.data.title(),
@@ -50,13 +50,13 @@ def register():
             'password': form.password.data
         }
 
-        
+        # Create instance of User
         new_user = User()
 
-       
+        # Implementing values from our form data for our instance
         new_user.from_dict(new_user_data)
 
-        
+        # Save user to database
         new_user.save_to_db()
 
         flash('You have successfully registered!', 'success')
@@ -75,19 +75,18 @@ def edit_profile():
             'email': form.email.data.lower()
         }
 
-    
+        # query current user from db to change
         queried_user = User.query.filter_by(email=new_user_data['email']).first()
 
-       
-        if queried_user:
+        # check if queried_user already exists
+        if queried_user and current_user.email != queried_user.email:
             flash('Email is already in use.', 'danger')
             return redirect(url_for('auth.edit_profile'))
         else:
-           
-           current_user.from_dict(new_user_data)
-           current_user.save_to_db()
+           # add changes to db
+           current_user.update_user(new_user_data)
+           current_user.update_to_db()
            flash('Profile Updated!', 'success')
            return redirect(url_for('main.home'))
 
     return render_template('edit_profile.html', form=form)
-
