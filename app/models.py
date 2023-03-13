@@ -52,6 +52,10 @@ class User(UserMixin, db.Model):
         self.caught_pokemon.append(pokemon)
         db.session.commit()
 
+    def remove_from_team(self, user):
+        self.caught_pokemon.remove(user)
+        db.session.commit()
+
 @login.user_loader
 def load_user(user_id):
     return User.query.get(user_id)

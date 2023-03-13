@@ -34,9 +34,8 @@ Pokemon Teams
             <form method="POST">
               {{ form.hidden_tag() }}
               <input type="hidden" name="remove_pokemon" value="{{ pokemon.id }}">
-              <button type="submit" class="btn btn-danger">Remove</button>
             </form>
-          </td>
+            <td class="last-tr"><a class="table_btns" href="{{url_for('main.remove_from_team', name=pokemon.pokemon_name)}}">Remove</a></td>
         </tr>
         {% endfor %}
       </tbody>

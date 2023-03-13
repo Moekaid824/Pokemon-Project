@@ -120,6 +120,17 @@ def team():
 
     return render_template('pokemon_teams.html', team=team, form=form)
 
+@main.route('/remove_from_team/<name>')
+@login_required
+def remove_from_team(name):
+    
+    team = current_user.caught_pokemon
+    for pokemon in team:
+        if pokemon.pokemon_name == name:
+            current_user.remove_from_team(pokemon)
+            flash(f'Successfully removed {pokemon.pokemon_name.title()}!', 'success')
+    return redirect(url_for('main.team'))
+
 @main.route('/battle', methods=['GET', 'POST'])
 @login_required
 def battle():
