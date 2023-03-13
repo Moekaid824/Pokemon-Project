@@ -63,7 +63,7 @@ def caught_pokemon(pokename):
                     'hp_stat':pokemon_attributes['stats'][0]['base_stat'],
                     'defense_stat':pokemon_attributes['stats'][0]['base_stat'],
                     }
-            pokemon= Catch()
+            pokemon=Catch()
             pokemon.from_dict(pokemon_info)
             pokemon.save_to_db()
             current_user.catch_pokemon(pokemon)
@@ -130,6 +130,6 @@ def battle():
         battle = Battle(attacker_id=attacker_id, defender_id=defender_id)
        
         flash('Attack successful!', 'success')
-        return redirect(url_for('main.home'))
+        return redirect(url_for('main.battle'))
     return render_template('battle.html', form=form)
 

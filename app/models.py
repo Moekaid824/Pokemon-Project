@@ -77,14 +77,14 @@ class Catch(db.Model):
         self.hp_stat= data['hp_stat']
         self.defense_stat= data['defense_stat']
 
-    # Save the capture to database
+    
     def save_to_db(self):
         db.session.add(self)
         db.session.commit()
-    # Update our db
+  
     def update_to_db(self):
         db.session.commit()
-    # Delete from db
+   
     def delete_pokemon(self):
         db.session.delete(self)
         db.session.commit()
