@@ -5,7 +5,7 @@ Edit Profile
 {% endblock %}
 
 {% block content %}
-<h1>Edit Profile Page</h1>
+<h1><img src="{{url_for('static', filename='images/pokemoneditprofilepage.png')}}" href="" alt=""></h1>
 <form action="{{url_for('auth.edit_profile')}}" method="POST">
     {{form.hidden_tag()}}
     <div class="form-group">
