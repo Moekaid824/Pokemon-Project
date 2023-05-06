@@ -18,7 +18,7 @@ class User(UserMixin, db.Model):
     caught_pokemon = db.relationship('Catch', secondary=pokemon_team, backref='other', lazy='dynamic')
     
 
-    # hashes our password
+    # hashes our passwords
     def hash_password(self, original_password):
         return generate_password_hash(original_password)
 
