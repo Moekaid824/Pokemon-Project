@@ -8,7 +8,7 @@
 -- A tool that helps to keep dependencies required by different projects separate by 
 -- creating isolated python virtual environments for them.
 
--Mac: 
+-Mac : 
 		-create: python3 -m venv my_venv
 		-activate: source my_venv/bin/activate
 
