@@ -5,7 +5,7 @@ from flask_login import login_required, current_user
 from app.blueprints.auth.forms import PokemonForm, BattleForm, TeamForm
 from ...models import User, Catch, Battle
 
-# ROUTES SECTION
+# ROUTES SECTIONS
 @main.route('/', methods=['GET'])
 @login_required
 def home():
