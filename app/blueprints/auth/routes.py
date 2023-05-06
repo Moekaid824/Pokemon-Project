@@ -50,7 +50,7 @@ def register():
             'password': form.password.data
         }
 
-        # Create instance of User
+        # Create instance of Users
         new_user = User()
 
         # Implementing values from our form data for our instance
